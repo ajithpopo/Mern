@@ -3,6 +3,7 @@ import mongoose from "mongoose";
 import bodyParser from "body-parser";
 import dotenv from "dotenv";
 import route from "./routes/userRoute.js"
+import cors from "cors"
 
 dotenv.config(); // ✅ Loads .env variables
 
@@ -10,8 +11,9 @@ const MONGO_URL = process.env.MONGO_URL; // ✅ Declare BEFORE use
 const PORT = process.env.PORT || 7000;
 
 const app = express();
-app.use(bodyParser.json());
 
+app.use(bodyParser.json());
+app.use(cors());
 mongoose
   .connect(MONGO_URL)
   .then(() => {
